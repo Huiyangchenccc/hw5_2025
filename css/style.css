@@ -1,0 +1,255 @@
+/* Edit the visual of the body to provide a general styling of the entire page*/
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f1f1f1 url('../images/concrete_seamless.png');/* This would provide the background image on top of the light grey color */
+    margin: 0px;
+    padding: 0px;
+}
+
+#logo {
+    width: 25px;
+    opacity: 0;/* This ensures that the logo is initially hidden when the page is refreshed*/
+    animation: logo-animation 5s forwards ease-in-out;/* This esures to have smooth logo animation for 5 seconds*/
+}
+
+/* This keyframe animation ensures that the logo expands and becomes fully visible*/
+@keyframes logo-animation {
+    from {
+        width: 25px;
+        opacity: 0;
+    }
+    to {
+        width: 475px;
+        opacity: 1;
+    }
+}
+
+ /* This step is for users who prefer less animation*/
+@media (prefers-reduced-motion: reduce) {
+    #logo {
+        animation: none;
+        width: 475px;
+        opacity: 1;/* Ensures that the logo is still visible, but it's not moving once refreshed*/
+    }
+}
+
+/* Header is aligned vertically with flex-direction set as column */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;/* Centers all items*/
+    text-align: center;
+}
+
+/* To arrange the navigation elements vertically with flex, the direction needs to be column */
+.nav_links {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Ensures links retain the same color even after being visited */
+a:link, a:visited {
+    color: rgb(0, 60, 255);
+}
+
+
+/* To target the header elements that are direct children of the card class */
+.card > header {
+    display: flex;
+    /* Ensures the items inside the first header of the card class are all aligned in a column*/
+    flex-direction: column;
+    background: #288088;
+    border: 2px solid #45ADAD;
+    /* the border radius needs to be set for the direct header child as well to make the light blue border shows up fully */
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.card {
+    width: 450px;
+    justify-content: space-between; /* Ensures the items takes up all the space inside the card*/
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    /* The radius of the bottom coners need to be specified to avoid rounded corners*/
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+
+/* Ensures the cards are centered and stacked vertically*/
+.pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Adds border and spaces to the images*/
+.gallery img {
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+/* To make sure each image is fully aligned and stretched, justify-content is applied to the entire gallery structure, not targeting the images*/
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+/* Responsive styles for larger screens*/
+@media screen and (min-width: 900px) {
+
+    header {
+        display: flex;
+        /* Since the logo and the navi links need to be aligned horizontally, flex direction need sto be row instead of column */
+        flex-direction: row;
+        /* Justify-content space-between will make each element reach the left and right borders to their maximum extent  */
+        justify-content: space-between;
+    }
+
+    /* To arrange the navigation elements vertically with flex, the direction needs to be column */
+    .nav_links {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+
+    /* Pricing section */
+    .pricing {
+        display: flex;
+        /* To make each card aligns horizontally, the flex direction needs to be row, and it should be applied to the pricing class to modify all cards*/
+        flex-direction: row;
+        /* To make each card placed in the center, justify-content and align-items needs to be changed to "center"*/
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card > header {
+        display: flex;
+        flex-direction: row;
+        background: #288088;
+        border: 2px solid #45ADAD;
+        /* the border radius needs to be set for the direct header child as well to make the light blue border shows up fully */
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        width: 275px;
+        justify-content: space-between;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        /* The radius of the bottom coners need to be specified to avoid rounded corners*/
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    /* Add margin and padding so the fixed header will not cover any content at the top*/
+    body {
+        margin-top: 50px;
+        padding-top: 50px;
+    }
+    /* To make sure that the only header outside of main is targeted*/
+    header:not(main header) {
+        /* To make the header always fixed at the top of the screen when scrolling*/
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    #logo {
+        width: 25px;
+        opacity: 0;
+        animation: logo-animation 5s forwards ease-in-out;
+    }
+
+    @keyframes logo-animation {
+        from {
+            width: 25px;
+            opacity: 0;
+        }
+        to {
+        /* To match with the sample screen, the logo is adjusted to be a bit smaller */
+            width: 400px;
+            opacity: 1;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        #logo {
+            animation: none; /* Disable animation */
+            width: 475px; /* Directly set final state */
+            opacity: 1;
+        }
+    }
+}
+
+/* Print-specific styles */
+@media print {
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: none;/* Removes background for readability */
+    }
+
+    .nav_links {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 180px;/* To space out the links*/
+    }
+
+    .pricing {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    flex-direction: row;
+    }
+
+    .card {
+    flex-basis: 325px;
+    border: 2px solid #45ADDD;
+    }
+
+
+    /* To make the h4 headers align to the left*/
+    .card header {
+        text-align: left;
+    }
+
+    #logo {
+        width: 100px;
+        opacity: 100;
+    }
+
+    /* To target the second <li> from the <ul>, the :nth-child pseudo-class needs to be applied to specify changes */
+    .pricing .card ul li:nth-child(2)::after {
+        content: "👍";
+    }
+
+    /* Only hides the h2 that has a "gallery" id */
+    h2#gallery{
+        display: none;
+    }
+    /* Hides the gallery images */
+    .gallery{
+        display: none;
+    }
+
+    }
+}
